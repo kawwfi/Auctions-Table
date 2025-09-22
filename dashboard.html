@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: #f8f5f0;
+        font-family: "Playfair Display", serif;
+      }
+
+      .dashboard {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        min-width: 250px;
+        background-color: #2c1b17;
+        color: #fff0d6;
+        padding: 30px 15px;
+      }
+
+      .sidebar h2 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .sidebar a {
+        color: #fff0d6;
+        display: block;
+        padding: 10px;
+        margin: 8px 0;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+
+      .sidebar a:hover,
+      .sidebar a.active {
+        background-color: #4b2e1e;
+      }
+
+      .main-content {
+        flex: 1;
+        padding: 40px 30px;
+      }
+
+      .dashboard-section {
+        display: none;
+      }
+
+      .dashboard-section.active {
+        display: block;
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      .dashboard-box {
+        border-left: 5px solid #b58963;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 30px;
+        transition: all 0.3s ease;
+      }
+
+      .dashboard-box:hover {
+        transform: translateY(-5px);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .back-home {
+        margin-top: 20px;
+      }
+
+      .item-details {
+        margin-top: 20px;
+        background: #fff8f2;
+        padding: 20px;
+        border-left: 4px solid #b58963;
+        border-radius: 8px;
+      }
+
+      .profile-picture {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 20px;
+      }
+
+      .item-image {
+        width: 45%;
+        height: 15%;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+      #sectionTitle {
+        margin-top: 1rem;
+        font-weight: 800;
+        font-size: 42px;
+      }
+      .live-desc {
+        font-family: "Lora", serif;
+        font-size: 1.05rem;
+        color: #2c1b17;
+        text-align: center;
+        margin-bottom: 2rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 1rem;
+        margin-top: 0.9rem;
+      }
+      h5 {
+        font-family: "Lora", serif;
+        font-size: 1.5rem;
+        color: #2c1b17;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <h2><i class="fas fa-chart-line me-2"></i>Dashboard</h2>
+        <a href="#" class="active" onclick="showSection('bids')"
+          ><i class="fas fa-gavel me-2"></i>Current Bids</a
+        >
+        <a href="#" onclick="showSection('won')"
+          ><i class="fas fa-trophy me-2"></i>Won Auctions</a
+        >
+        <a href="#" onclick="showSection('history')"
+          ><i class="fas fa-history me-2"></i>Bid History</a
+        >
+        <a href="#" onclick="showSection('profile')"
+          ><i class="fas fa-user-circle me-2"></i>Profile Settings</a
+        >
+        <a href="index.html"><i class="fas fa-home me-2"></i>Back to Home</a>
+      </div>
+      <div class="container">
+        <!-- Main Content -->
+        <div class="main-content">
+          <h2 id="sectionTitle" class="text-center">Current Bids</h2>
+          <p class="live-desc">
+            🔥 Stay ahead of the game — track your active bids in real-time and
+            never miss a winning opportunity!
+          </p>
+          <!-- Section: Current Bids -->
+
+          <div id="bids" class="dashboard-section active">
+            <div class="row">
+              <div class="col">
+                <div
+                  class="dashboard-box"
+                  onclick="showItemDetails('Vintage Watch - $120')"
+                >
+                  <img src="img/w.jpg" alt="Vintage Watch" class="item-image" />
+                  <h5>Vintage Watch</h5>
+                  <p>Current Bid: $120 | Ends in: 3 hrs</p>
+                </div>
+              </div>
+              <div class="col">
+                <div
+                  class="dashboard-box"
+                  onclick="showItemDetails('Painting Set - $80')"
+                >
+                  <img src="img/a4.jpg" alt="Painting Set" class="item-image" />
+                  <h5>Painting Set</h5>
+                  <p>Current Bid: $80 | Ends in: 5 hrs</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div
+                    class="dashboard-box"
+                    onclick="showItemDetails('Painting Set - $80')"
+                  >
+                    <img
+                      src="img/bsg.jpg"
+                      alt=" Designer Handbag"
+                      class="item-image"
+                    />
+                    <h5>Designer Handbag</h5>
+                    <p>Current Bid: $180 | Ends in: 4 hrs</p>
+                  </div>
+                </div>
+                <div class="col">
+                  <div
+                    class="dashboard-box"
+                    onclick="showItemDetails('Painting Set - $80')"
+                  >
+                    <img
+                      src="img/vas.jpg"
+                      alt="Antique Vase"
+                      class="item-image"
+                    />
+                    <h5>Antique Vase</h5>
+                    <p>Current Bid: $250 | Ends in: 3 hrs</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Won Auctions -->
+          <div id="won" class="dashboard-section">
+            <div class="row">
+              <div class="col">
+                <div class="dashboard-box">
+                  <img
+                    src="img/vas.jpg"
+                    alt="Antique Vase"
+                    class="item-image"
+                  />
+                  <h5>Antique Vase</h5>
+                  <p>Won for $150 | Delivered</p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="dashboard-box">
+                  <img
+                    src="img/f3.jpg"
+                    alt="Leather Jacket"
+                    class="item-image"
+                  />
+                  <h5>Pearl Necklace</h5>
+                  <p>Won for $90 | Shipped</p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="dashboard-box">
+                  <img
+                    src="img/f10.jpg"
+                    alt="Signed Jersey"
+                    class="item-image"
+                  />
+                  <h5>Signed Jersey</h5>
+                  <p>Won for $150 | Shipped</p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="dashboard-box">
+                  <img
+                    src="img/f9.jpg"
+                    alt="Leather Jacket"
+                    class="item-image"
+                  />
+                  <h5>Rare Coin</h5>
+                  <p>Won for $290 | Delivered</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Bid History -->
+          <div id="history" class="dashboard-section">
+            <div class="row">
+              <div class="col">
+                <div class="dashboard-box">
+                  <img
+                    src="img/ball.jpg"
+                    alt="Signed Baseball"
+                    class="item-image"
+                  />
+                  <h5>Signed Baseball</h5>
+                  <p>Your bid: $70 | Final Price: $80 | Lost</p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="dashboard-box">
+                  <img
+                    src="img/f4.jpg"
+                    alt="First Edition"
+                    class="item-image"
+                  />
+                  <h5>First Edition</h5>
+                  <p>Your bid: $50 | Final Price: $50 | Won</p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="dashboard-box">
+                  <img
+                    src="img/headphone.jpg"
+                    alt="Headphones"
+                    class="item-image"
+                  />
+                  <h5>Headphones</h5>
+                  <p>Your bid: $70 | Final Price: $80 | Lost</p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="dashboard-box">
+                  <img
+                    src="img/f7.jpg"
+                    alt="Retro Sunglasses"
+                    class="item-image"
+                  />
+                  <h5>Retro Sunglasses</h5>
+                  <p>Your bid: $50 | Final Price: $150 | Lost</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Profile Settings -->
+          <div id="profile" class="dashboard-section">
+            <h3>Edit Profile</h3>
+            <img
+              id="profileImage"
+              src="img/customer.jpg"
+              alt="Profile Picture"
+              class="profile-picture"
+            />
+            <form>
+              <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  value="John Doe"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  value="john@example.com"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Change Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Enter new password"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="profilePic" class="form-label"
+                  >Profile Picture</label
+                >
+                <input
+                  type="file"
+                  class="form-control"
+                  id="profilePic"
+                  accept="image/*"
+                  onchange="previewImage(event)"
+                />
+              </div>
+              <button type="submit" class="btn btn-dark">Save Changes</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      function showSection(id) {
+        const sections = document.querySelectorAll(".dashboard-section");
+        sections.forEach((section) => section.classList.remove("active"));
+
+        const links = document.querySelectorAll(".sidebar a");
+        links.forEach((link) => link.classList.remove("active"));
+
+        document.getElementById(id).classList.add("active");
+        event.target.classList.add("active");
+
+        const titles = {
+          bids: "Current Bids",
+          won: "Won Auctions",
+          history: "Bid History",
+          profile: "Profile Settings",
+        };
+        document.getElementById("sectionTitle").innerText = titles[id];
+
+        if (id !== "bids") {
+          document.getElementById("itemDetails").style.display = "none";
+        }
+      }
+
+      function showItemDetails(info) {
+        const detailBox = document.getElementById("itemDetails");
+        detailBox.style.display = "block";
+        detailBox.innerHTML = `<strong>Selected Item:</strong> ${info}`;
+      }
+
+      function previewImage(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById("profileImage").src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    </script>
+  </body>
+</html>
